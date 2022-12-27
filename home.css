@@ -1,0 +1,214 @@
+body {
+  background-color: #fff5ec;
+}
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-background {
+  background-color: #efc81a;
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
+  color: #fff5ec !important;
+}
+/* start css for header */
+
+#header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: #fff5ec;
+}
+
+#header h1 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 52px;
+  /* or 125% */
+
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+
+  color: #2e266f;
+}
+
+#header .background-grid {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#header .main-background {
+  position: absolute;
+  z-index: 5;
+}
+
+#header .background-1 {
+  margin-top: -150px;
+}
+#header .background-2 {
+  position: absolute;
+  margin-left: -120px;
+}
+
+#header .content {
+  z-index: 1;
+}
+
+#header .overlay-background {
+  height: 100vh;
+  width: 300px;
+  background-color: #efc81a;
+  position: absolute;
+  z-index: 0;
+  right: 0;
+}
+
+/* end css for header */
+
+/* start css for new-recipe */
+#new-recipe {
+  margin-top: 80px;
+  margin-bottom: 150px;
+}
+
+#new-recipe .title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 80px;
+  color: #3f3a3a;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 100px;
+  border-left: 15px solid #efc81a;
+  padding-left: 20px;
+}
+
+#new-recipe .background-overlay {
+  height: 500px;
+  background-color: #efc81a;
+  width: 350px;
+  margin-top: -50px;
+  position: absolute;
+  z-index: 0;
+}
+
+#new-recipe .main-image {
+  object-fit: cover;
+  border-radius: 10px;
+  z-index: 1;
+  position: relative;
+}
+/* end of new recipe css */
+
+/* start of popular-recipe css */
+#popular-recipe {
+  margin-top: 80px;
+  margin-bottom: 150px;
+}
+
+#popular-recipe .title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 80px;
+  color: #3f3a3a;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 80px;
+  border-left: 15px solid #efc81a;
+  padding-left: 20px;
+}
+
+#popular-recipe .clickable-image {
+  cursor: pointer;
+  height: 400px;
+  object-fit: cover;
+  position: relative;
+}
+
+#popular-recipe .clickable-image img {
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+#popular-recipe .clickable-image:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
+
+#popular-recipe .image-title {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  margin: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  text-shadow: 3px 0px 5px rgba(0, 0, 0, 0.29);
+}
+/* end of popular-recipe css */
+
+/* start footer css */
+footer {
+  background-color: #efc81a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+  text-align: center;
+  position: relative;
+}
+
+footer h2 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 52px;
+  margin-bottom: 30px;
+
+  color: #2e266f;
+}
+
+footer p {
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  text-align: center;
+  color: #707070;
+}
+
+footer .footer-link {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+footer .footer-link p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 24px;
+  /* or 150% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: capitalize;
+
+  color: #707070;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+/* end of footer css */
