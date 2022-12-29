@@ -1,6 +1,14 @@
 body {
   background-color: #fff5ec;
 }
+
+/* global css */
+@media screen and (max-width: 576px) {
+  .mt-xs-5 {
+    margin-top: 50px;
+  }
+}
+
 .navbar {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -12,6 +20,16 @@ body {
   -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
   -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
   color: #fff5ec !important;
+}
+
+@media screen and (max-width: 576px) {
+  .navbar {
+    background-color: #efc81a;
+    box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
+    -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
+    -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
+    color: #fff5ec !important;
+  }
 }
 /* start css for header */
 
@@ -68,6 +86,48 @@ body {
   right: 0;
 }
 
+/* responsive for mobile */
+@media screen and (max-width: 576px) {
+  #header {
+    margin-top: 100px;
+    height: 80vh;
+  }
+
+  #header,
+  #header .background-grid {
+    display: block;
+    align-items: unset;
+  }
+
+  /* #header .row {
+    flex-direction: column-reverse !important;
+  } */
+
+  #header .background-grid {
+    height: 50vh;
+  }
+
+  #header .background-grid .main-background {
+    width: 100%;
+    margin-left: -30px;
+  }
+
+  #header .background-grid .background-1 {
+    display: none;
+    visibility: hidden;
+  }
+
+  #header .background-grid .background-2 {
+    display: none;
+    visibility: hidden;
+  }
+
+  #header .overlay-background {
+    display: none;
+    visibility: hidden;
+  }
+}
+
 /* end css for header */
 
 /* start css for new-recipe */
@@ -96,6 +156,7 @@ body {
   margin-top: -50px;
   position: absolute;
   z-index: 0;
+  border-radius: 0px 10px 0px 0px;
 }
 
 #new-recipe .main-image {
@@ -103,6 +164,17 @@ body {
   border-radius: 10px;
   z-index: 1;
   position: relative;
+}
+
+/* responsive for mobile */
+@media screen and (max-width: 576px) {
+  #new-recipe .main-image {
+    height: 300px;
+  }
+
+  #new-recipe .background-overlay {
+    height: 300px;
+  }
 }
 /* end of new recipe css */
 
@@ -128,13 +200,13 @@ body {
 #popular-recipe .clickable-image {
   cursor: pointer;
   height: 400px;
-  object-fit: cover;
   position: relative;
 }
 
 #popular-recipe .clickable-image img {
   cursor: pointer;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 #popular-recipe .clickable-image:hover {
@@ -154,6 +226,19 @@ body {
   -webkit-box-orient: vertical;
   text-shadow: 3px 0px 5px rgba(0, 0, 0, 0.29);
 }
+
+@media screen and (max-width: 576px) {
+  #popular-recipe .clickable-image {
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  #popular-recipe .image-title {
+    margin: 10px;
+  }
+}
+
 /* end of popular-recipe css */
 
 /* start footer css */
