@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Detail from "./pages/Detail";
+import AddRecipe from "./pages/AddRecipe";
 import Profile from "./pages/Profile";
 
 // functional component
@@ -28,6 +29,10 @@ function App() {
       path: "profile",
       element: <Profile />,
     },
+    {
+      path: "add-recipe",
+      element: <AddRecipe />,
+    }
   ]);
 
   // JSX
