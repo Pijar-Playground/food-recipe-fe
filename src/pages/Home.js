@@ -47,9 +47,8 @@ function Home() {
                 </Link>
               </li>
               <li className="nav-item me-5">
-                <a className="nav-link" href="#">
-                  Profile
-                </a>
+                <Link className="nav-link" to="profile">
+                  Profile</Link>
               </li>
             </ul>
           </div>
