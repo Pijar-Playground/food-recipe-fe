@@ -42,9 +42,9 @@ function Home() {
                 </a>
               </li>
               <li className="nav-item me-5">
-                <a className="nav-link" href="#">
+                <Link className="nav-link" to="/add-recipe">
                   Add Recipe
-                </a>
+                </Link>
               </li>
               <li className="nav-item me-5">
                 <a className="nav-link" href="#">
