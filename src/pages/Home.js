@@ -149,9 +149,11 @@ function Home() {
                 Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in
                 a hurry? That’s right!
               </p>
-              <button type="button" className="btn btn-warning">
-                See More
-              </button>
+              <Link to="/detail">
+                <button type="button" className="btn btn-warning">
+                  See More
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -169,88 +171,100 @@ function Home() {
           {/* <!-- recipe list --> */}
           <div className="row">
             <div className="col-lg-4 col-6">
-              <div className="clickable-image mb-4">
-                <img
-                  src="./images/home/recipe-1.jpg"
-                  height="100%"
-                  width="100%"
-                  alt="placeholder"
-                />
-                <h2 className="image-title">
-                  Chiken Kare with spice sauce and shrimp Chiken Kare with spice
-                  sauce and shrimp
-                </h2>
-              </div>
+              <Link to="/detail">
+                <div className="clickable-image mb-4">
+                  <img
+                    src="./images/home/recipe-1.jpg"
+                    height="100%"
+                    width="100%"
+                    alt="placeholder"
+                  />
+                  <h2 className="image-title">
+                    Chiken Kare with spice sauce and shrimp Chiken Kare with
+                    spice sauce and shrimp
+                  </h2>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-4 col-6">
-              <div className="clickable-image mb-4">
-                <img
-                  src="./images/home/recipe-1.jpg"
-                  height="100%"
-                  width="100%"
-                  alt="placeholder"
-                />
-                <h2 className="image-title">
-                  Chiken Kare with spice sauce and shrimp Chiken Kare with spice
-                  sauce and shrimp
-                </h2>
-              </div>
+              <Link to="/detail">
+                <div className="clickable-image mb-4">
+                  <img
+                    src="./images/home/recipe-1.jpg"
+                    height="100%"
+                    width="100%"
+                    alt="placeholder"
+                  />
+                  <h2 className="image-title">
+                    Chiken Kare with spice sauce and shrimp Chiken Kare with
+                    spice sauce and shrimp
+                  </h2>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-4 col-6">
-              <div className="clickable-image mb-4">
-                <img
-                  src="./images/home/recipe-1.jpg"
-                  height="100%"
-                  width="100%"
-                  alt="placeholder"
-                />
-                <h2 className="image-title">
-                  Chiken Kare with spice sauce and shrimp Chiken Kare with spice
-                  sauce and shrimp
-                </h2>
-              </div>
+              <Link to="/detail">
+                <div className="clickable-image mb-4">
+                  <img
+                    src="./images/home/recipe-1.jpg"
+                    height="100%"
+                    width="100%"
+                    alt="placeholder"
+                  />
+                  <h2 className="image-title">
+                    Chiken Kare with spice sauce and shrimp Chiken Kare with
+                    spice sauce and shrimp
+                  </h2>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-4 col-6">
-              <div className="clickable-image mb-4">
-                <img
-                  src="./images/home/recipe-1.jpg"
-                  height="100%"
-                  width="100%"
-                  alt="placeholder"
-                />
-                <h2 className="image-title">
-                  Chiken Kare with spice sauce and shrimp Chiken Kare with spice
-                  sauce and shrimp
-                </h2>
-              </div>
+              <Link to="/detail">
+                <div className="clickable-image mb-4">
+                  <img
+                    src="./images/home/recipe-1.jpg"
+                    height="100%"
+                    width="100%"
+                    alt="placeholder"
+                  />
+                  <h2 className="image-title">
+                    Chiken Kare with spice sauce and shrimp Chiken Kare with
+                    spice sauce and shrimp
+                  </h2>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-4 col-6">
-              <div className="clickable-image mb-4">
-                <img
-                  src="./images/home/recipe-1.jpg"
-                  height="100%"
-                  width="100%"
-                  alt="placeholder"
-                />
-                <h2 className="image-title">
-                  Chiken Kare with spice sauce and shrimp Chiken Kare with spice
-                  sauce and shrimp
-                </h2>
-              </div>
+              <Link to="/detail">
+                <div className="clickable-image mb-4">
+                  <img
+                    src="./images/home/recipe-1.jpg"
+                    height="100%"
+                    width="100%"
+                    alt="placeholder"
+                  />
+                  <h2 className="image-title">
+                    Chiken Kare with spice sauce and shrimp Chiken Kare with
+                    spice sauce and shrimp
+                  </h2>
+                </div>
+              </Link>
             </div>
             <div className="col-lg-4 col-6">
-              <div className="clickable-image mb-4">
-                <img
-                  src="./images/home/recipe-1.jpg"
-                  height="100%"
-                  width="100%"
-                  alt="placeholder"
-                />
-                <h2 className="image-title">
-                  Chiken Kare with spice sauce and shrimp Chiken Kare with spice
-                  sauce and shrimp
-                </h2>
-              </div>
+              <Link to="/detail">
+                <div className="clickable-image mb-4">
+                  <img
+                    src="./images/home/recipe-1.jpg"
+                    height="100%"
+                    width="100%"
+                    alt="placeholder"
+                  />
+                  <h2 className="image-title">
+                    Chiken Kare with spice sauce and shrimp Chiken Kare with
+                    spice sauce and shrimp
+                  </h2>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
