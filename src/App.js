@@ -5,9 +5,11 @@ import Register from "./pages/Auth/Register";
 import Detail from "./pages/Detail";
 import AddRecipe from "./pages/AddRecipe";
 import Profile from "./pages/Profile";
+import Maintenance from "./pages/Maintenance";
 
 // functional component
 function App() {
+  const maintenance = ["/detail", "/profile", "/register", "/add-recipe"];
   const router = createBrowserRouter([
     {
       path: "/",
@@ -22,7 +24,7 @@ function App() {
       element: <Register />,
     },
     {
-      path: "detail",
+      path: "detail/:id",
       element: <Detail />,
     },
     {
@@ -32,11 +34,19 @@ function App() {
     {
       path: "add-recipe",
       element: <AddRecipe />,
-    }
+    },
   ]);
 
-  // JSX
-  return <RouterProvider router={router} />;
+  const isPageMaintenance =
+    process.env.REACT_APP_IS_MAINTENANCE === "true" &&
+    maintenance.find((res) => res === document.location.pathname);
+
+  if (isPageMaintenance) {
+    return <Maintenance />;
+  } else {
+    // JSX
+    return <RouterProvider router={router} />;
+  }
 }
 
 export default App;
