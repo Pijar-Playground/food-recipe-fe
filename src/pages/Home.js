@@ -1,35 +1,56 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import "../styles/home.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Navbar from "../components/organisms/Navbar";
 import Footer from "../components/organisms/Footer";
 import RecipeCard from "../components/molecules/RecipeCard";
+import SpinerGroup from "../components/molecules/SpinerGroup";
 // single page application
-
-const menu = [
-  {
-    name: "Nasi Jinggo",
-    image:
-      "https://travelspromo.com/wp-content/uploads/2021/04/Nasi-Jinggo-x-Juna-Daily-Box-1024x1024.jpg",
-  },
-  {
-    name: "Wagyu Blackpaper",
-    image:
-      "https://travelspromo.com/wp-content/uploads/2021/04/Wagyu-Blackpepper-Daily-Box-1024x1024.jpg",
-  },
-  {
-    name: "Ayam geprek sambel matah",
-    image:
-      "https://travelspromo.com/wp-content/uploads/2021/04/Ayam-Geprek-Sambal-Matah-Daily-Box-1-1024x1024.jpg",
-  },
-];
 
 // redux = ngumpulin semua data jadi satu
 
-function Home() {
+function Home(props) {
+  let [keyword, setKeyword] = React.useState("Discovery Recipe");
+  let [menu, setMenu] = React.useState([]);
+  let [isLoading, setIsLoading] = React.useState(true);
+
+  // fase 1 = did mount
+  // fase 2 = did update
+  // fase 3 = will unmount
+
+  // untuk storing data
+  // DID MOUNT
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+      setMenu([
+        {
+          name: "Nasi Jinggo",
+          image:
+            "https://travelspromo.com/wp-content/uploads/2021/04/Nasi-Jinggo-x-Juna-Daily-Box-1024x1024.jpg",
+        },
+        {
+          name: "Wagyu Blackpaper",
+          image:
+            "https://travelspromo.com/wp-content/uploads/2021/04/Wagyu-Blackpepper-Daily-Box-1024x1024.jpg",
+        },
+        {
+          name: "Ayam geprek sambel matah",
+          image:
+            "https://travelspromo.com/wp-content/uploads/2021/04/Ayam-Geprek-Sambal-Matah-Daily-Box-1-1024x1024.jpg",
+        },
+      ]);
+    }, 3000);
+  }, []);
+
+  // Did update
+  React.useEffect(() => {
+    console.log("Loading berubah");
+  }, [isLoading, keyword]);
+
   return (
-    <div>
+    <div id="home_page">
       {/* <!-- Navbar --> */}
       <Navbar />
       {/* <!-- end of navbar --> */}
@@ -44,13 +65,16 @@ function Home() {
           <div className="row align-items-center">
             {/* <!-- side left --> */}
             <div className="col-lg-5 col-xs-12 order-1 order-lg-0">
-              <h1>Discover Recipe & Delicious Food</h1>
+              <h1>{keyword}</h1>
               <div className="mt-4">
                 <input
                   type="text"
                   className="form-control form-control-lg"
                   id="form-search"
                   placeholder="search recipe..."
+                  onChange={(event) => {
+                    setKeyword(event.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -132,6 +156,10 @@ function Home() {
           <div className="container">
             <h2 className="title">Popular Recipe</h2>
           </div>
+
+          {isLoading ? <SpinerGroup /> : null}
+
+          {menu.length === 0 && !isLoading ? <h2>Recipe not found</h2> : null}
 
           {/* <!-- recipe list --> */}
           <div className="row">
