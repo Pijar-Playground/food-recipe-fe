@@ -1,72 +1,58 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import "../styles/home.css";
-import { Link } from "react-router-dom";
-
+import { Link, useLocation } from "react-router-dom";
+import Navbar from "../components/organisms/Navbar";
+import Footer from "../components/organisms/Footer";
+import RecipeCard from "../components/molecules/RecipeCard";
+import SpinerGroup from "../components/molecules/SpinerGroup";
 // single page application
 
-function Home() {
+// redux = ngumpulin semua data jadi satu
+
+function Home(props) {
+  let [keyword, setKeyword] = React.useState("Discovery Recipe");
+  let [menu, setMenu] = React.useState([]);
+  let [isLoading, setIsLoading] = React.useState(true);
+
+  // fase 1 = did mount
+  // fase 2 = did update
+  // fase 3 = will unmount
+
+  // untuk storing data
+  // DID MOUNT
   React.useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 100) {
-        document.querySelector(".navbar").classList.add("navbar-background");
-      } else {
-        document.querySelector(".navbar").classList.remove("navbar-background");
-      }
-    });
+    setTimeout(() => {
+      setIsLoading(false);
+      setMenu([
+        {
+          name: "Nasi Jinggo",
+          image:
+            "https://travelspromo.com/wp-content/uploads/2021/04/Nasi-Jinggo-x-Juna-Daily-Box-1024x1024.jpg",
+        },
+        {
+          name: "Wagyu Blackpaper",
+          image:
+            "https://travelspromo.com/wp-content/uploads/2021/04/Wagyu-Blackpepper-Daily-Box-1024x1024.jpg",
+        },
+        {
+          name: "Ayam geprek sambel matah",
+          image:
+            "https://travelspromo.com/wp-content/uploads/2021/04/Ayam-Geprek-Sambal-Matah-Daily-Box-1-1024x1024.jpg",
+        },
+      ]);
+    }, 3000);
   }, []);
 
-  return (
-    <div>
-      {/* <!-- Display for laptop --> */}
-      {/* <!-- Navbar --> */}
-      <nav className="navbar navbar-expand-lg fixed-top">
-        <div className="container">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
+  // Did update
+  React.useEffect(() => {
+    console.log("Loading berubah");
+  }, [isLoading, keyword]);
 
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item me-5">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item me-5">
-                <a className="nav-link" href="#">
-                  Add Recipe
-                </a>
-              </li>
-              <li className="nav-item me-5">
-                <a className="nav-link" href="#">
-                  Profile
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="col-lg-2 col-xs-5">
-            <Link to="/login">
-              <button type="button" className="btn btn-warning shadow-sm">
-                Log In
-              </button>
-            </Link>
-            <Link to="/register">
-              <button type="button" className="btn btn-light shadow-sm">
-                Register
-              </button>
-            </Link>
-          </div>
-        </div>
-      </nav>
+  return (
+    <div id="home_page">
+      {/* <!-- Navbar --> */}
+      <Navbar />
       {/* <!-- end of navbar --> */}
 
       {/* <!-- header --> */}
@@ -79,13 +65,16 @@ function Home() {
           <div className="row align-items-center">
             {/* <!-- side left --> */}
             <div className="col-lg-5 col-xs-12 order-1 order-lg-0">
-              <h1>Discover Recipe & Delicious Food</h1>
+              <h1>{keyword}</h1>
               <div className="mt-4">
                 <input
                   type="text"
                   className="form-control form-control-lg"
                   id="form-search"
                   placeholder="search recipe..."
+                  onChange={(event) => {
+                    setKeyword(event.target.value);
+                  }}
                 />
               </div>
             </div>
@@ -168,120 +157,28 @@ function Home() {
             <h2 className="title">Popular Recipe</h2>
           </div>
 
+          {isLoading ? <SpinerGroup /> : null}
+
+          {menu.length === 0 && !isLoading ? <h2>Recipe not found</h2> : null}
+
           {/* <!-- recipe list --> */}
           <div className="row">
-            <div className="col-lg-4 col-6">
-              <Link to="/detail">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="./images/home/recipe-1.jpg"
-                    height="100%"
-                    width="100%"
-                    alt="placeholder"
-                  />
-                  <h2 className="image-title">
-                    Chiken Kare with spice sauce and shrimp Chiken Kare with
-                    spice sauce and shrimp
-                  </h2>
-                </div>
-              </Link>
-            </div>
-            <div className="col-lg-4 col-6">
-              <Link to="/detail">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="./images/home/recipe-1.jpg"
-                    height="100%"
-                    width="100%"
-                    alt="placeholder"
-                  />
-                  <h2 className="image-title">
-                    Chiken Kare with spice sauce and shrimp Chiken Kare with
-                    spice sauce and shrimp
-                  </h2>
-                </div>
-              </Link>
-            </div>
-            <div className="col-lg-4 col-6">
-              <Link to="/detail">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="./images/home/recipe-1.jpg"
-                    height="100%"
-                    width="100%"
-                    alt="placeholder"
-                  />
-                  <h2 className="image-title">
-                    Chiken Kare with spice sauce and shrimp Chiken Kare with
-                    spice sauce and shrimp
-                  </h2>
-                </div>
-              </Link>
-            </div>
-            <div className="col-lg-4 col-6">
-              <Link to="/detail">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="./images/home/recipe-1.jpg"
-                    height="100%"
-                    width="100%"
-                    alt="placeholder"
-                  />
-                  <h2 className="image-title">
-                    Chiken Kare with spice sauce and shrimp Chiken Kare with
-                    spice sauce and shrimp
-                  </h2>
-                </div>
-              </Link>
-            </div>
-            <div className="col-lg-4 col-6">
-              <Link to="/detail">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="./images/home/recipe-1.jpg"
-                    height="100%"
-                    width="100%"
-                    alt="placeholder"
-                  />
-                  <h2 className="image-title">
-                    Chiken Kare with spice sauce and shrimp Chiken Kare with
-                    spice sauce and shrimp
-                  </h2>
-                </div>
-              </Link>
-            </div>
-            <div className="col-lg-4 col-6">
-              <Link to="/detail">
-                <div className="clickable-image mb-4">
-                  <img
-                    src="./images/home/recipe-1.jpg"
-                    height="100%"
-                    width="100%"
-                    alt="placeholder"
-                  />
-                  <h2 className="image-title">
-                    Chiken Kare with spice sauce and shrimp Chiken Kare with
-                    spice sauce and shrimp
-                  </h2>
-                </div>
-              </Link>
-            </div>
+            {menu.map((item) => (
+              <div className="col-lg-4 col-6">
+                <RecipeCard
+                  image={item?.image}
+                  name={item?.name}
+                  url={item?.name?.toLocaleLowerCase()?.split(" ").join("-")}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
       {/* <!-- end of popular recipe --> */}
 
       {/* <!-- footer --> */}
-      <footer>
-        <div>
-          <h2>Eat, Cook, Repeat</h2>
-          <p>Share your best recipe by uploading here !</p>
-
-          <div className="footer-link">
-            <p>Copyright 2022 by Bilkis Ismail. All Rights Reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
       {/* <!-- end of footer --> */}
     </div>
   );
