@@ -9,6 +9,10 @@ import Maintenance from "./pages/Maintenance";
 import Logout from "./pages/Auth/Logout";
 import React from "react";
 
+// import redux
+import store from "./store/index";
+import { Provider } from "react-redux";
+
 // functional component
 function App() {
   const maintenance = ["/register", "/add-recipe"];
@@ -58,7 +62,11 @@ function App() {
     );
   } else {
     // JSX
-    return <RouterProvider router={router} />;
+    return (
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
   }
 }
 
