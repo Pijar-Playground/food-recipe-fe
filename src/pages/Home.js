@@ -6,6 +6,7 @@ import Navbar from "../components/organisms/Navbar";
 import Footer from "../components/organisms/Footer";
 import RecipeCard from "../components/molecules/RecipeCard";
 import SpinerGroup from "../components/molecules/SpinerGroup";
+import axios from "axios";
 // single page application
 
 // redux = ngumpulin semua data jadi satu
@@ -14,6 +15,8 @@ function Home(props) {
   let [keyword, setKeyword] = React.useState("Discovery Recipe");
   let [menu, setMenu] = React.useState([]);
   let [isLoading, setIsLoading] = React.useState(true);
+  let [currentPage, setCurrentPage] = React.useState(1);
+  let [totalPage, setTotalPage] = React.useState(1);
 
   // fase 1 = did mount
   // fase 2 = did update
@@ -22,32 +25,33 @@ function Home(props) {
   // untuk storing data
   // DID MOUNT
   React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-      setMenu([
-        {
-          name: "Nasi Jinggo",
-          image:
-            "https://travelspromo.com/wp-content/uploads/2021/04/Nasi-Jinggo-x-Juna-Daily-Box-1024x1024.jpg",
-        },
-        {
-          name: "Wagyu Blackpaper",
-          image:
-            "https://travelspromo.com/wp-content/uploads/2021/04/Wagyu-Blackpepper-Daily-Box-1024x1024.jpg",
-        },
-        {
-          name: "Ayam geprek sambel matah",
-          image:
-            "https://travelspromo.com/wp-content/uploads/2021/04/Ayam-Geprek-Sambal-Matah-Daily-Box-1-1024x1024.jpg",
-        },
-      ]);
-    }, 3000);
+    axios
+      .get(`${process.env.REACT_APP_URL_BACKEND}/recipe?limit=6&page=1`)
+      .then(({ data }) => {
+        let countPagination = parseInt(data?.pagination_all?.[0]?.count) / 6;
+        setMenu(data?.data);
+        setTotalPage(countPagination);
+      })
+      .catch(() => setMenu([]))
+      .finally(() => setIsLoading(false));
   }, []);
 
-  // Did update
-  React.useEffect(() => {
-    console.log("Loading berubah");
-  }, [isLoading, keyword]);
+  const fetchPagination = (pageParam) => {
+    setIsLoading(true);
+    setMenu([]);
+    axios
+      .get(
+        `${process.env.REACT_APP_URL_BACKEND}/recipe?limit=6&page=${pageParam}`
+      )
+      .then(({ data }) => {
+        let countPagination = parseInt(data?.pagination_all?.[0]?.count) / 6;
+        setMenu(data?.data);
+        setTotalPage(countPagination);
+        setCurrentPage(pageParam);
+      })
+      .catch(() => setMenu([]))
+      .finally(() => setIsLoading(false));
+  };
 
   return (
     <div id="home_page">
@@ -163,17 +167,69 @@ function Home(props) {
 
           {/* <!-- recipe list --> */}
           <div className="row">
-            {menu.map((item) => (
-              <div className="col-lg-4 col-6">
-                <RecipeCard
-                  image={item?.image}
-                  name={item?.name}
-                  url={item?.name?.toLocaleLowerCase()?.split(" ").join("-")}
-                />
-              </div>
-            ))}
+            {!isLoading &&
+              menu.map((item, key) => (
+                <div className="col-lg-4 col-6" key={key}>
+                  <RecipeCard
+                    image={item?.photo}
+                    name={item?.name}
+                    url={item?.slug}
+                  />
+                </div>
+              ))}
           </div>
         </div>
+
+        {!isLoading && (
+          <div className="container">
+            <nav aria-label="Page navigation example">
+              <ul className="pagination justify-content-center">
+                <li className="page-item">
+                  <a
+                    className={`page-link ${
+                      currentPage === 1 ? "disabled" : ""
+                    }`}
+                    onClick={() => {
+                      if (currentPage > 1) fetchPagination(currentPage - 1);
+                    }}
+                  >
+                    Previous
+                  </a>
+                </li>
+                {[...new Array(totalPage)].map((item, key) => {
+                  let position = ++key;
+                  return (
+                    <li className="page-item" key={key}>
+                      <a
+                        className={`page-link ${
+                          currentPage === position ? "active" : ""
+                        }`}
+                        onClick={() => {
+                          fetchPagination(position);
+                        }}
+                      >
+                        {position}
+                      </a>
+                    </li>
+                  );
+                })}
+                <li class="page-item">
+                  <a
+                    class={`page-link ${
+                      currentPage === totalPage ? "disabled" : ""
+                    }`}
+                    onClick={() => {
+                      if (currentPage < totalPage)
+                        fetchPagination(currentPage + 1);
+                    }}
+                  >
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        )}
       </section>
       {/* <!-- end of popular recipe --> */}
 

@@ -1,38 +1,4 @@
-body {
-  background-color: #fff5ec;
-}
-
-/* global css */
-@media screen and (max-width: 576px) {
-  .mt-xs-5 {
-    margin-top: 50px;
-  }
-}
-
-.navbar {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-
-.navbar-background {
-  background-color: #efc81a;
-  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
-  -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
-  -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
-  color: #fff5ec !important;
-}
-
-@media screen and (max-width: 576px) {
-  .navbar {
-    background-color: #efc81a;
-    box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
-    -webkit-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
-    -moz-box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.24);
-    color: #fff5ec !important;
-  }
-}
 /* start css for header */
-
 #header {
   height: 100vh;
   display: flex;
