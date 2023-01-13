@@ -1,12 +1,14 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import Detail from "./pages/Detail";
-import AddRecipe from "./pages/AddRecipe";
-import Profile from "./pages/Profile";
-import Maintenance from "./pages/Maintenance";
 import React from "react";
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
+import Profile from "./pages/Profile";
+import Login from "./pages/Auth/Login";
+import AddRecipe from "./pages/AddRecipe";
+import Register from "./pages/Auth/Register";
+import Maintenance from "./pages/Maintenance";
+import store from "./stores/index";
+import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // functional component
 function App() {
@@ -15,7 +17,6 @@ function App() {
     process.env.REACT_APP_IS_MAINTENANCE === "true" &&
       maintenance.find((res) => res === document.location.pathname)
   );
-
   const router = createBrowserRouter([
     {
       path: "/",
@@ -53,7 +54,11 @@ function App() {
     );
   } else {
     // JSX
-    return <RouterProvider router={router} />;
+    return (
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    );
   }
 }
 

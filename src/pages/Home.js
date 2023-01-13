@@ -1,17 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import "../styles/home.css";
-import { Link, useLocation } from "react-router-dom";
 import Navbar from "../components/organisms/Navbar";
 import Footer from "../components/organisms/Footer";
 import RecipeCard from "../components/molecules/RecipeCard";
 import SpinerGroup from "../components/molecules/SpinerGroup";
+import * as recipeReducer from "../stores/recipeReducer";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import "../styles/home.css";
 // single page application
 
 // redux = ngumpulin semua data jadi satu
 
 function Home(props) {
-  let [keyword, setKeyword] = React.useState("Discovery Recipe");
+  let navigate = useNavigate();
+  let dispatch = useDispatch();
+  let reduxState = useSelector((state) => state);
   let [menu, setMenu] = React.useState([]);
   let [isLoading, setIsLoading] = React.useState(true);
 
@@ -44,11 +48,6 @@ function Home(props) {
     }, 3000);
   }, []);
 
-  // Did update
-  React.useEffect(() => {
-    console.log("Loading berubah");
-  }, [isLoading, keyword]);
-
   return (
     <div id="home_page">
       {/* <!-- Navbar --> */}
@@ -65,16 +64,13 @@ function Home(props) {
           <div className="row align-items-center">
             {/* <!-- side left --> */}
             <div className="col-lg-5 col-xs-12 order-1 order-lg-0">
-              <h1>{keyword}</h1>
+              <h1>Discovery Recipe</h1>
               <div className="mt-4">
                 <input
                   type="text"
                   className="form-control form-control-lg"
                   id="form-search"
                   placeholder="search recipe..."
-                  onChange={(event) => {
-                    setKeyword(event.target.value);
-                  }}
                 />
               </div>
             </div>
@@ -138,11 +134,20 @@ function Home(props) {
                 Quick + Easy Chicken Bone Broth Ramen- Healthy chicken ramen in
                 a hurry? That’s right!
               </p>
-              <Link to="/detail">
-                <button type="button" className="btn btn-warning">
-                  See More
-                </button>
-              </Link>
+              <button
+                type="button"
+                className="btn btn-warning"
+                onClick={() => {
+                  dispatch(
+                    recipeReducer.setDetail({
+                      data: { test: "test" },
+                      slug: "healthy-bone-broth-ramen",
+                    })
+                  );
+                }}
+              >
+                See More
+              </button>
             </div>
           </div>
         </div>
