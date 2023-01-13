@@ -1,56 +1,44 @@
 import React from "react";
+import Navbar from "../components/organisms/Navbar";
+import "../styles/profile.css";
+import { useNavigate } from "react-router-dom";
 
 function Profile(props) {
+  const navigate = useNavigate();
+  const checkProfile = localStorage.getItem("profile")
+    ? JSON.parse(localStorage.getItem("profile"))
+    : null;
+  const [profile, setProfile] = React.useState(checkProfile);
+
+  // check if already login
+  React.useEffect(() => {
+    const isLogin = localStorage.getItem("isLogin");
+    const token = localStorage.getItem("token");
+
+    if (!isLogin && !token) {
+      navigate("/login"); // navigate to home
+    }
+  }, []);
+
   return (
-    <div>
+    <div id="profile_page">
+      {/* <!-- Navbar --> */}
+      <Navbar />
+      {/* <!-- end of navbar --> */}
+
       <div className="container">
-        <div
-          id="carouselExampleControls"
-          class="carousel slide"
-          data-bs-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
+        <section className="header">
+          <div>
+            <div className="image-center">
               <img
-                src="https://akornas.ac.id/wp-content/uploads/2022/02/placeholder-1.png"
-                class="d-block w-100"
-                alt="..."
+                src={profile?.photo}
+                className="profile-image"
+                alt="profile"
               />
             </div>
-            <div class="carousel-item">
-              <img
-                src="https://akornas.ac.id/wp-content/uploads/2022/02/placeholder-1.png"
-                class="d-block w-100"
-                alt="..."
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                src="https://akornas.ac.id/wp-content/uploads/2022/02/placeholder-1.png"
-                class="d-block w-100"
-                alt="..."
-              />
-            </div>
+            <h3 className="text-center">{profile?.name}</h3>
           </div>
-          <button
-            class="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleControls"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
+        </section>
       </div>
     </div>
   );

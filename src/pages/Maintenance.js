@@ -3,15 +3,15 @@ import React from "react";
 function Maintenance(props) {
   // Handle maintenance
   React.useEffect(() => {
-    setInterval(() => {
-      if (
-        props.maintenanceList.find((res) => res === window.location.pathname)
-      ) {
-        props.turnOnMaintenance();
-      } else {
-        props.turnOffMaintenance();
-      }
-    }, 1000);
+    // setInterval(() => {
+    //   if (
+    //     props.maintenanceList.find((res) => res === window.location.pathname)
+    //   ) {
+    //     props.turnOnMaintenance();
+    //   } else {
+    //     props.turnOffMaintenance();
+    //   }
+    // }, 1000);
   }, []);
 
   return (
