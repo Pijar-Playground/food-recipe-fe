@@ -28,6 +28,10 @@ function App() {
       path: "profile",
       element: <Profile />,
     },
+    {
+      path: "url-baru",
+      element: <Profile />,
+    },
   ]);
 
   // JSX
