@@ -32,7 +32,11 @@ function App() {
     {
       path: "add-recipe",
       element: <AddRecipe />,
-    }
+    },
+    {
+      path: "url-barunya-2",
+      element: <AddRecipe />,
+    },
   ]);
 
   // JSX
